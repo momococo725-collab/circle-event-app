@@ -118,7 +118,7 @@ const deleteEvent = (id: number) => {
 
                   <button
 
-                    onClick={() => toggleJoin(event.id)}
+                    onClick={() => toggleJoin(event?.id)}
 
                     className={`rounded-lg px-4 py-2 text-sm font-medium ${
                       event.joined
