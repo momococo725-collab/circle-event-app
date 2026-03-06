@@ -14,9 +14,27 @@ type EventItem = {
 
 export default function Home() {
   const [events, setEvents] = useState<EventItem[]>([
-    { id: 1, title: "新歓ミーティング", date: "2026-04-10", place: "学生会館", joined: true },
-    { id: 2, title: "交流会", date: "2026-04-18", place: "梅田カフェ", joined: false },
-    { id: 3, title: "BBQイベント", date: "2026-05-03", place: "淀川河川敷", joined: true },
+    {
+      id: 1,
+      title: "新歓ミーティング",
+      date: "2026-04-10",
+      place: "学生会館",
+      joined: true,
+    },
+    {
+      id: 2,
+      title: "交流会",
+      date: "2026-04-18",
+      place: "梅田カフェ",
+      joined: false,
+    },
+    {
+      id: 3,
+      title: "BBQイベント",
+      date: "2026-05-03",
+      place: "淀川河川敷",
+      joined: true,
+    },
   ]);
 
   const [title, setTitle] = useState("");
@@ -47,24 +65,27 @@ export default function Home() {
       )
     );
   };
-const deleteEvent = (id: number) => {
-  setEvents(events.filter((event) => event.id !== id));
-};
+
+  const deleteEvent = (id: number) => {
+    setEvents(events.filter((event) => event.id !== id));
+  };
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 p-6">
       <div className="max-w-5xl mx-auto">
         <header className="mb-8">
-          <p className="text-sm text-blue-600 font-semibold mb-2">Portfolio Project</p>
+          <p className="text-sm text-blue-600 font-semibold mb-2">
+            Portfolio Project
+          </p>
           <h1 className="text-4xl font-bold mb-3">Campus Event Manager</h1>
           <p className="text-gray-600">
             大学サークルや学生団体向けに、イベント情報の管理と参加確認を簡単に行えるWebアプリを想定して制作しました。
           </p>
         </header>
 
-<div className="mb-8">
-  <Calendar />
-</div>
+        <div className="mb-8">
+          <Calendar />
+        </div>
 
         <section className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-1 bg-white rounded-2xl shadow-sm p-5 border">
@@ -78,12 +99,14 @@ const deleteEvent = (id: number) => {
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full border rounded-lg px-3 py-2"
               />
+
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="w-full border rounded-lg px-3 py-2"
               />
+
               <input
                 type="text"
                 placeholder="場所"
@@ -116,26 +139,27 @@ const deleteEvent = (id: number) => {
                     <p className="text-sm text-gray-600">場所: {event.place}</p>
                   </div>
 
-                  <button
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => toggleJoin(event.id)}
+                      className={`rounded-lg px-4 py-2 text-sm font-medium ${
+                        event.joined
+                          ? "bg-green-100 text-green-700"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {event.joined ? "参加予定" : "未参加"}
+                    </button>
 
-                    onClick={() => toggleJoin(event?.id)}
-
-                    className={`rounded-lg px-4 py-2 text-sm font-medium ${
-                      event.joined
-                        ? "bg-green-100 text-green-700"
-                        : "bg-gray-100 text-gray-700"
-                    }`}
-                  >
-                    {event.joined ? "参加予定" : "未参加"}
-                  </button>
+                    <button
+                      onClick={() => deleteEvent(event.id)}
+                      className="bg-red-100 text-red-700 rounded-lg px-4 py-2 text-sm"
+                    >
+                      削除
+                    </button>
+                  </div>
                 </div>
               ))}
-<button
-  onClick={() => deleteEvent(event.id)}
-  className="bg-red-100 text-red-700 rounded-lg px-4 py-2 text-sm"
->
-  削除
-</button>
             </div>
           </div>
         </section>
