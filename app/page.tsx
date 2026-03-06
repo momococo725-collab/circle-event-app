@@ -117,11 +117,9 @@ const deleteEvent = (id: number) => {
                   </div>
 
                   <button
-<<<<<<< HEAD
-                    onClick={() => toggleJoin(event?.id)}
-=======
+
                     onClick={() => toggleJoin(event.id)}
->>>>>>> 334a71c18a82c842e13cb586c72a087cafa49b4f
+
                     className={`rounded-lg px-4 py-2 text-sm font-medium ${
                       event.joined
                         ? "bg-green-100 text-green-700"
